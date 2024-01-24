@@ -1,0 +1,183 @@
+Mongo:
+
+  MongoHost: mts-agent-component-mongo:27017
+  MongoAuth: admin
+  MongoUser: mongodb
+  MongoPasswd: www.galaxyeye-tech.com
+  MongoDBName: rag_server_dev
+  MongoMinConn: 16
+  MongoMaxConn: 32
+
+
+Redis:
+
+  RedisHost: mts-agent-component-redis:6379
+  RedisPasswd:
+  RedisMinConn: 32
+  RedisMaxConn: 128
+  RedisExpire: 3600
+  RedisKeyPrefix: rag_server_dev
+  RedisClusterMode: False
+
+
+Base:
+
+  Debug: True
+  GZip: False
+  Secret: e078904347df444aa23299cf5b63d4d4
+
+
+Thread:
+
+  DocServiceThreadWorker: 1
+  QAServiceThreadWorker: 1
+  MilvusServiceThreadWorker: 128
+  EmbeddingServiceThreadWorker: 128
+
+
+Cros:
+
+  AllowOrigins: "*"
+  AllowMethods: "*"
+  AllowHeaders: "*"
+  AllowCredentials: True
+
+
+Log:
+
+  LogLevel: info
+  LogFilePath: /usr/local/mts-agent-rag/logs
+  LogFileSplitSize: 500
+  LogFileSplitTime: 00:00
+  LogFileBackups: 7
+  LogElasticsearchHost:
+  LogElasticsearchIndex: rag_server_dev
+  LogElasticsearchHostUsername:
+  LogElasticsearchHostPassword:
+
+
+RabbitMQ:
+
+  RabbitMQServerURL: amqp://guest:guest@mts-agent-component-rabbitMq:5672
+  RabbitMQDocumentImportExchange: document_import
+  RabbitMQDocumentImportQueueName: document_import_queue
+
+
+Neo4j:
+
+  QANeo4jUri: bolt://mts-agent-component-neo4j:7687
+  QANeo4jUsername: neo4j
+  QANeo4jPassword: www.galaxyeye-tech.com
+  QANeo4jDBName: neo4j
+
+  DocNeo4jUri: bolt://mts-agent-component-neo4j:7687
+  DocNeo4jUsername: neo4j
+  DocNeo4jPassword: www.galaxyeye-tech.com
+  DocNeo4jDBName: neo4j
+
+
+Milvus:
+
+  MilvusAlias: default
+  MilvusHost: mts-agent-component-milvus
+  MilvusPort: 19530
+  MilvusUri: http://mts-agent-component-milvus:19530
+  MilvusToken:
+  MilvusDBName: default
+  MilvusCollectionDocumentName: document
+  MilvusCollectionQuestionName: question
+  MilvusCollectionMemoryName: memory
+  MilvusCollectionDialogueStrategyName: dialogue_strategy
+
+  MilvusCollectionClusterName: cluster
+
+
+Word2Vec:
+
+  Word2VecBgeName: bge
+  Word2VecBgeDim: 1024
+  Word2VecSimcseName: simcse
+  Word2VecSimcseDim: 768
+
+
+QueueBuffer:
+
+  DialogMongoQueueBufferMemoryMaxSize: 512
+  DialogMongoQueueBufferMemoryTimeout: 2
+  DialogMongoQueueBufferMemoryTaskLimit: 2
+
+
+DataStorage:
+
+  DataStorageMongoMemory: memory
+  DataStorageMongoDocument: document
+  DataStorageMongoDocumentParagraph: document_paragraph
+  DataStorageMongoQuestion: question
+  DataStorageMongoCluster: cluster
+  DataStorageMongoVec: vectors
+  DataStorageMongoDialogueStrategy: dialogue_strategy
+
+  DataStorageElasticsearchHost:
+  DataStorageElasticsearchUsername:
+  DataStorageElasticsearchPassword:
+  DataStorageElasticsearchShards: 1
+  DataStorageElasticsearchPoolSize: 512
+  DataStorageElasticsearchTimeout: 60
+
+
+Embedding:
+
+  FlagModelPath: /usr/local/models/bge-large-zh/
+
+
+Cluster:
+
+  # mts-agent服务IP
+  ClusterMtsAgent: 172.16.2.217:12400
+  # 聚类数量少于10个，簇不保留，印象为游离状态
+  ClusterFreeCluster: 10
+  # 游离数量，达到n个开始重新聚类
+  ClusterOriginFreeImpression: 10
+  # 游离数量，达到n个开始重新聚类
+  ClusterFreeImpression: 3
+  # 相似度分簇阈值
+  ClusterThreshold: 0.9
+  #簇类间印象阈值
+  ClusterImpressionThreshold: 0.8
+  # 置信度默认值设置
+  ClusterConfidence: 3
+  # 置信度权重
+  ClusterConfidenceWeight: 0.35
+  # 聚类达到阈值，产生猜想
+  ClusterGuess: 3.0
+  # 注意力衰减速度 1：表示100秒
+  ClusterAttentionDecay: 1440
+  #印象聚类字段取值
+  ClusterImpressionValues: summarize|describe
+
+MtsAgent:
+
+  MtsAgentLlmMatchQuestionUrl: http://mts-agent-server-base:12400/mts_agent/llm/v1/match_question
+  MtsAgentLlmBatchMatchQuestionUrl: http://mts-agent-server-base:12400/mts_agent/llm/v1/batch_match_question
+
+
+Default:
+  # QA 置信度默认值
+  DefaultQAConfi: 40
+  # QA-question 置信度默认值
+  DefaultQAQuestionConfi: -1
+  # QA-answer(typ以'A'开头的) 置信度默认值
+  DefaultQAAnswerConfi: 40
+  # QA-用户回答(type='A_用户回答') 置信度默认值
+  DefaultQAUserAnswerConfi: 60
+
+  # Memory 置信度默认值
+  DefaultMemoryConfi: 40
+  # Memory-用户称述 置信度默认值
+  DefaultMemoryDescriptionConfi: 60
+
+
+Cron:
+
+  # memory 关注度衰减1需要的小时数(<24)
+  CronMemoryAttentionDecayHour: 5

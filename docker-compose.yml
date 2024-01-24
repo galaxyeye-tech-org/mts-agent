@@ -1,0 +1,210 @@
+version: "3.5"
+
+services:
+
+  mts-agent-server-base:
+    image: galaxyeyetech/mts-agent-base:v1.0.0
+    container_name: mts-agent-server-base
+    restart: always
+    ports:
+      - "12400:12400"
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/agent/logs:/usr/local/mts-agent/logs
+    networks:
+      - mts-agent-network
+
+  mts-agent-server-dialogue:
+    image: galaxyeyetech/mts-agent-dialogue:v1.0.0
+    container_name: mts-agent-server-dialogue
+    restart: always
+    ports:
+      - "9999:9999"
+    environment:
+      openai_api_key: ${OPENAI_API_KEY:-[Please replace the content here with your own OpenAi official ApiKey]}
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/dialogue/logs:/usr/local/ai_dialogue_service/logs
+    networks:
+      - mts-agent-network
+
+
+  mts-agent-server-rag:
+    image: galaxyeyetech/mts-agent-rag:v1.0.0
+    container_name: mts-agent-server-rag
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/rag/logs:/usr/local/mts-agent-rag/logs
+    environment:
+
+      MONGO_MONGOHOST: mts-agent-component-mongo:27017
+      MONGO_MONGOUSER: ${MONGO_USERNAME:-mongodb}
+      MONGO_MONGOPASSWD: ${MONGO_PASSWORD:-www.galaxyeye-tech.com}
+
+      REDIS_REDISHOST: mts-agent-component-redis:6379
+
+      RABBITMQ_RABBITMQSERVERURL: amqp://guest:guest@mts-agent-component-rabbitMq:5672
+
+      NEO4J_QANEO4JURI: bolt://mts-agent-component-neo4j:7687
+      NEO4J_QANEO4JPASSWORD: ${NEO4J_PASSWORD:-www.galaxyeye-tech.com}
+      NEO4J_DOCNEO4JURI: bolt://mts-agent-component-neo4j:7687
+      NEO4J_DOCNEO4JPASSWORD: ${NEO4J_PASSWORD:-www.galaxyeye-tech.com}
+
+      MILVUS_MILVUSHOST: mts-agent-component-milvus
+      MILVUS_MILVUSURI: http://mts-agent-component-milvus:19530
+    networks:
+      - mts-agent-network
+    depends_on:
+      - "mts-agent-component-mongo"
+      - "mts-agent-component-redis"
+      - "mts-agent-component-rabbitMq"
+      - "mts-agent-component-milvus"
+      - "mts-agent-component-neo4j"
+
+  mts-agent-component-mongo:
+    image: mongo:4.4.13
+    container_name: mts-agent-component-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-mongodb}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-www.galaxyeye-tech.com}
+    ports:
+      - "27017:27017"
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mongo/data:/data/db:rw
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mongo/configdb:/data/configdb:rw
+    networks:
+      - mts-agent-network
+
+  mts-agent-component-redis:
+    image: redis:7.0
+    container_name: mts-agent-component-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/redis/data:/data
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - mts-agent-network
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  mts-agent-component-rabbitMq:
+    image: rabbitmq:3.8
+    container_name: mts-agent-component-rabbitMq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/rabbitmq/data:/var/lib/rabbitmq
+    networks:
+      - mts-agent-network
+
+  mts-agent-component-elasticsearch:
+    image: elasticsearch:8.1.1
+    container_name: mts-agent-component-elasticsearch
+    restart: always
+    environment:
+      discovery.type: 'single-node'
+      xpack.security.enabled: 'false'
+      xpack.security.enrollment.enabled: 'false'
+      ES_JAVA_OPTS: -Xms2g -Xmx2g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/elasticsearch/plugins:/usr/share/elasticsearch/plugins:rw
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/elasticsearch/data:/usr/share/elasticsearch/data:rw
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/elasticsearch/logs:/usr/share/elasticsearch/logs:rw
+    networks:
+      - mts-agent-network
+
+  mts-agent-component-milvusEtcd:
+    image: quay.io/coreos/etcd:v3.5.5
+    container_name: mts-agent-component-milvusEtcd
+    environment:
+      - ETCD_AUTO_COMPACTION_MODE=revision
+      - ETCD_AUTO_COMPACTION_RETENTION=1000
+      - ETCD_QUOTA_BACKEND_BYTES=4294967296
+      - ETCD_SNAPSHOT_COUNT=50000
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/milvus/etcd:/etcd
+    networks:
+      - mts-agent-network
+    command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    healthcheck:
+      test: [ "CMD", "etcdctl", "endpoint", "health" ]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  mts-agent-component-milvusMinio:
+      image: minio/minio:RELEASE.2023-03-20T20-16-18Z
+      container_name: mts-agent-component-milvusMinio
+      environment:
+        MINIO_ACCESS_KEY: minioadmin
+        MINIO_SECRET_KEY: minioadmin
+      ports:
+        - "9001:9001"
+        - "9000:9000"
+      volumes:
+        - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/milvus/minio/minio_data:/minio_data
+        - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/milvus/minio/data:/data
+      networks:
+        - mts-agent-network
+      command: minio server /minio_data --console-address ":9001"
+      healthcheck:
+        test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+        interval: 30s
+        timeout: 20s
+        retries: 3
+
+  mts-agent-component-milvus:
+      image: milvusdb/milvus:v2.3.3
+      container_name: mts-agent-component-milvus
+      command: [ "milvus", "run", "standalone" ]
+      security_opt:
+        - seccomp:unconfined
+      environment:
+        ETCD_ENDPOINTS: mts-agent-component-milvusEtcd:2379
+        MINIO_ADDRESS: mts-agent-component-milvusMinio:9000
+      volumes:
+        - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/milvus/data:/var/lib/milvus
+      networks:
+        - mts-agent-network
+      healthcheck:
+        test: [ "CMD", "curl", "-f", "http://localhost:9091/healthz" ]
+        interval: 30s
+        start_period: 90s
+        timeout: 20s
+        retries: 3
+      ports:
+        - "19530:19530"
+        - "9091:9091"
+      depends_on:
+        - "mts-agent-component-milvusEtcd"
+        - "mts-agent-component-milvusMinio"
+
+
+  mts-agent-component-neo4j:
+    image: neo4j:4.4.29-community
+    container_name: mts-agent-component-neo4j
+    restart: always
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=${NEO4J_USERNAME:-neo4j}/${NEO4J_PASSWORD:-www.galaxyeye-tech.com}
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/neo4j/data:/data
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/neo4j/logs:/logs
+    networks:
+      - mts-agent-network
+
+
+networks:
+  mts-agent-network:
+    driver: bridge

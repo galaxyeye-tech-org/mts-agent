@@ -1,0 +1,248 @@
+.link {
+  width: 100%;
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (max-width: 767px) {
+    height: 64px;
+    display: block;
+  }
+  &__input {
+    width: 40%;
+  }
+  &__btn {
+    width: 15%;
+    .point {
+      position: relative;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+
+      &_inside {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+      }
+    }
+    .link {
+      background: rgb(154, 252, 175);
+      &_inside {
+        background: rgb(0, 255, 106);
+      }
+    }
+    .disLink {
+      background: rgb(255, 103, 103);
+      &_inside {
+        background: rgb(255, 0, 0);
+      }
+    }
+  }
+  // 以下为部分移动端样式，web端可以忽略
+  .mobile {
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+  .mobile2 {
+    @media only screen and (max-width: 767px) {
+      width: 65%;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+  }
+  .mobile3 {
+    @media only screen and (max-width: 767px) {
+      width: 30%;
+      margin-left: 5%;
+      display: inline-block;
+    }
+  }
+  :global {
+    .ant-btn {
+      padding: 0px;
+    }
+  }
+}
+.chat {
+  box-sizing: border-box;
+  padding: 8px;
+  margin-top: 20px;
+  flex: 1;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  @media only screen and (max-width: 767px) {
+    margin-top: 10px;
+  }
+  &__top {
+    width: 100%;
+    height: 32px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+    @media only screen and (max-width: 767px) {
+      display: block;
+      height: auto;
+    }
+    &__btn {
+      display: flex;
+      align-items: center;
+      &_margin {
+        margin-left: 8px;
+      }
+      &_voice {
+        margin-left: 8px;
+        width: 24px;
+        height: 24px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .voiceOn {
+        background: url(../../../../assets/chat/voice.png) no-repeat;
+        background-size: contain;
+      }
+      .voiceOff {
+        background: url(../../../../assets/chat/silence.png) no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+  &__intention {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: #2d2d2d;
+    border-radius: 4px;
+    overflow: hidden;
+    &_title {
+      margin-left: 4px;
+      width: 48px;
+    }
+    &_text {
+      width: calc(100% - 52px);
+      white-space: nowrap;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  &__content {
+    flex: 1;
+    overflow: auto;
+    .user {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .ai {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .item {
+      min-height: 50px;
+      margin: 16px 8px;
+      &__icon_user {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: url(../../../../assets/chat/grayAvatar.png);
+        background-size: contain;
+      }
+      &__icon_ai {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: url(../../../../assets/chat/aiAvatar.png);
+        background-size: contain;
+      }
+      &__text {
+        margin: 0px 4px;
+        max-width: calc(100% - 38px);
+        &_time {
+          height: 18px;
+          font-size: 13px;
+          color: #6d6d6d;
+        }
+        .right {
+          text-align: right;
+        }
+        &_content {
+          box-sizing: border-box;
+          background: #e7e7e7;
+          border-radius: 5px;
+          color: #2d2d2d;
+          padding: 6px;
+          font-size: 15px;
+          white-space: break-spaces;
+        }
+      }
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &_line {
+      width: 100%;
+      font-size: 14px;
+      color: #ccc;
+      text-align: center;
+      margin: 4px 0px;
+    }
+  }
+  &__input {
+    width: 100%;
+    height: 30px;
+    padding: 16px 0px 8px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_area {
+      width: calc(98% - 120px);
+    }
+    &_btn {
+      width: 90px;
+    }
+    &_switch {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      &:hover {
+        cursor: pointer;
+      }
+      .cube {
+        width: 10px;
+        height: 10px;
+        background: rgb(255, 69, 69);
+      }
+    }
+    .talk {
+      color: rgb(255, 69, 69);
+      border-color: rgb(255, 69, 69);
+    }
+    &_micro {
+      width: calc(98% - 30px);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  }
+}

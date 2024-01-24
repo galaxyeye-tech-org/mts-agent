@@ -1,0 +1,55 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .detail {
+    flex: 1;
+    &__json {
+      width: 100%;
+      overflow: auto;
+    }
+  }
+  .empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .input {
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    margin: 0px 8px 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    &_text {
+      width: calc(95% - 90px);
+    }
+    &_btn {
+      width: 90px;
+    }
+  }
+  .memory {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px 8px;
+    overflow: auto;
+    &_total {
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    &__item {
+      margin-bottom: 16px;
+      &_content {
+        color: rgb(28, 119, 255);
+      }
+      &_red {
+        color: rgb(172, 4, 4);
+      }
+      &_blue {
+        color: rgb(28, 119, 255);
+      }
+    }
+  }
+}

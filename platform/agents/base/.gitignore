@@ -1,0 +1,8 @@
+*.log*
+article
+result
+__pycache__
+nohup*
+.idea/
+.vscode
+nacos-data

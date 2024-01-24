@@ -1,0 +1,29 @@
+.wrapper {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  padding: 16px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (max-width: 767px) {
+    padding: 8px;
+  }
+  .content {
+    width: 32%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .main {
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+    }
+  }
+  .onlyPc {
+    //在pc端不进行显示
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+}

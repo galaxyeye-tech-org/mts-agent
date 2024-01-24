@@ -1,0 +1,34 @@
+.display {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin-top: 52px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  .tab {
+    width: 100%;
+    height: calc(100% - 16px);
+    overflow: auto;
+  }
+  .switch {
+    width: 57px;
+    margin-left: 4px;
+  }
+  .stone {
+    width: 61px;
+  }
+  :global {
+    .ant-tabs {
+      height: 100%;
+      .ant-tabs-content-holder {
+        flex: 1;
+        .ant-tabs-content {
+          height: 100%;
+          .ant-tabs-tabpane {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

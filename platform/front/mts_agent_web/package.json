@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "author": "千禧 <578445333@qq.com>",
+  "scripts": {
+    "build": "cross-env UMI_ENV=dev umi build",
+    "build:prd": "cross-env UMI_ENV=prd umi build",
+    "setup": "umi setup",
+    "start": "cross-env UMI_ENV=dev umi dev",
+    "start:prd": "cross-env UMI_ENV=prd umi dev"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@umijs/plugins": "^4.0.89",
+    "antd": "^5.12.2",
+    "bm-aichat-core": "^0.1.5",
+    "dayjs": "^1.11.10",
+    "lodash": "^4.17.21",
+    "markdown-it": "^14.0.0",
+    "react-json-view": "^1.21.3",
+    "recorder-core": "^1.3.23122400",
+    "typescript": "^5.3.3",
+    "umi": "^4.0.89"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "prettier": "^2.8.8",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.4.7"
+  }
+}

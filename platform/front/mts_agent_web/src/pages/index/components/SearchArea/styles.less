@@ -1,0 +1,44 @@
+.search {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin-top: 52px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  &__btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    &_insert {
+      width: 32%;
+      height: 32px;
+    }
+  }
+  &_area {
+    margin-bottom: 8px;
+  }
+  &__multiple {
+    width: 100%;
+    flex: 1;
+    border: 1px solid #ccc;
+    overflow: hidden;
+  }
+  :global {
+    .ant-tabs {
+      height: 100%;
+      .ant-tabs-content-holder {
+        flex: 1;
+        .ant-tabs-content {
+          height: 100%;
+          .ant-tabs-tabpane {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

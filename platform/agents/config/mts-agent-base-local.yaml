@@ -1,0 +1,46 @@
+Base:
+
+  Debug: true
+
+  # 监听的Prompt文件列表
+  ListenNacosPrompts: 关注度|分流|响应|回答判断|问题分类与工具|搜索公共知识库|植物性认知|印象冲击总结|主动求解|发散提问|问答匹配|策略转化|策略匹配|对话补全|分流_句式判断|对话意图分析|信息时效性判断|主动表达|角色转化|印象冲击_猜想|主动求解_结论
+
+  DialoguePrompt: 响应|提问|提问猜想|主动表达
+  GptServer: http://mts-agent-server-dialogue:9999/gptService/v1/sentenceZH
+  RagService: http://mts-agent-server-rag:9090/rag_service
+  AttentionUrl: http://mts-agent-server-base:12400/mts_agent/divide/v1
+  DefaultMinAttention: 31
+  ConvergenceMinAttention: 40
+  PermanentMemAttention: 30
+  SecondExpressionTime: 20
+  MaxQps: 20
+
+  serviceFiles: ./base/mts_agent_service.py|./dialogue_service/dialogue_management_service.py|./plant_cognition_service/cognition_service.py|./summarize_service/summarize_service.py.py|./convergence_service/convergence_service.py|./divergence_service/divergence_service.py|./response_service/response_service.py|./strategy_service/strategy_service.py|./second_expression/second_expression_service.py
+
+Log:
+  LogLevel: info
+  LogFilePath: /usr/local/mts-agent/logs
+  LogFileSplitSize: 500
+  LogFileSplitTime: 00:00
+  LogFileBackups: 7
+
+Redis:
+  RedisCluster: False
+  RedisKeyPrefix: mts_agent
+  RedisIp: mts-agent-component-redis
+  RedisPort: 6379
+  RedisPwd:
+  RedisLockIp: mts-agent-component-redis
+  RedisLockPort: 6379
+  RedisLockPwd:
+  RedisLockIsCluster: False
+
+Dialog:
+  DialogElasticsearchHost:
+  DialogElasticsearchIndex: mts_agent_dialogue_local
+  DialogElasticsearchHostUsername:
+  DialogElasticsearchHostPassword:
+  DialogElasticsearchNumberOfReplicas: 0
+  DialogActionQueueBufferMaxSize: 512
+  DialogActionQueueBufferTimeout: 1
+  DialogActionQueueBufferTaskLimit: 2
