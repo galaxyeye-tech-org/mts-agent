@@ -18,10 +18,11 @@ export function initWebsocket(uid) {
 
 // 打开连接
 export function connectWebsocket(url, successCallback, errorCallback) {
-  if (!aiChat || !chatUid) {
+  if (!aiChat || !chatUid || !url) {
     return;
   }
-  const wsUrl = url ?? WS_URL;
+  // const wsUrl = url ?? WS_URL;
+  const wsUrl = url;
 
   aiChat.setReconnect(false); // 禁止自动重连
   aiChat.createConnect(`${wsUrl}?uid=${chatUid}`);
