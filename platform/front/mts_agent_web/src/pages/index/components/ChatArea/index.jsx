@@ -29,7 +29,7 @@ const ChatArea = (props) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [lightState, setLightState] = useState(true);
   const [uidInput, setUidInput] = useState('');
-  const [urlInput, setUrlInput] = useState('ws://localhost......');
+  const [urlInput, setUrlInput] = useState('ws://localhost/mts_agent/dialogue/v1/dialogue');
   const [textInput, setTextInput] = useState('');
   const [isMicrophone, setIsMicrophone] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false); // 是否说话
