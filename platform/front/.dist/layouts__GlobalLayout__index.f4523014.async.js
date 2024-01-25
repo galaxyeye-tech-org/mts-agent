@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[577],{66725:function(e,u,n){n.r(u),n.d(u,{default:function(){return t}});var r=n(86111),s={wrapper:"wrapper___Bnrn3"},o=n(85893);function t(){return window.onerror=function(l){console.log("\u6355\u83B7\u5230\u5168\u5C40\u5F02\u5E38:",l)},(0,o.jsx)("div",{className:s.wrapper,children:(0,o.jsx)(r.Outlet,{})})}}}]);
