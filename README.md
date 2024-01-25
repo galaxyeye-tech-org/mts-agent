@@ -98,3 +98,7 @@ rag和ai_dialogue_service支持环境变量配置，可以通过.env或者docker
 
 ### 1.6 运行
 
+使用以下命令启动agent:
+docker compose up -d
+
+浏览器中访问部署的服务器的IP，如http://127.0.0.1/，工具页中有一个websocket连接地址，默认为ws://localhost/mts_agent/dialogue/v1/dialogue，请将localhost改为部署的IP地址
