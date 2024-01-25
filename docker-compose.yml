@@ -2,6 +2,15 @@ version: "3.5"
 
 services:
 
+  mts-agent-server-web:
+    image: galaxyeyetech/mts-agent-web:v1.0.0
+    container_name: mts-agent-server-web
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - mts-agent-network
+
   mts-agent-server-base:
     image: galaxyeyetech/mts-agent-base:v1.0.0
     container_name: mts-agent-server-base
