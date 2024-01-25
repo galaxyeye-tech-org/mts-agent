@@ -253,11 +253,11 @@ const ChatArea = (props) => {
 
   // 切换输入模式
   const handleSwitch = () => {
-    if (isSpeaking) {
-      setIsSpeaking(false);
-    } else {
-      setIsMicrophone((pre) => !pre);
-    }
+    // if (isSpeaking) {
+    //   setIsSpeaking(false);
+    // } else {
+    //   setIsMicrophone((pre) => !pre);
+    // }
   };
 
   // 打开关闭麦克风
