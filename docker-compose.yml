@@ -30,6 +30,7 @@ services:
       - "9999:9999"
     environment:
       openai_api_key: ${OPENAI_API_KEY:-[Please replace the content here with your own OpenAi official ApiKey]}
+#      openai_url:
     volumes:
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/dialogue/logs:/usr/local/ai_dialogue_service/logs
     networks:

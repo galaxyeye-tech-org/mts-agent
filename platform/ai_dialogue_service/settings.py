@@ -27,8 +27,8 @@ project_path = project_dir("ai_dialogue_service")
 log_path = f'{project_path}/logs'
 
 openai_info = {
-            "openai_url": "https://api.openai.com",
-            "openai_api_key":os.environ.get("openai_api_key", None),
+            "openai_url": os.environ.get("openai_url", "https://api.openai.com"),
+            "openai_api_key":os.environ.get("openai_api_key", ""),
             "openai_type": "api",
             "chat_request_timeout": 300,
             "text_request_timeout": 600
