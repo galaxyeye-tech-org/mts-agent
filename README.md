@@ -1,104 +1,135 @@
+English | [中文](./README_zh.md)
+
 # MTS-Agent
 
-## 1 项目说明
+## Introducing
+
+### Overview
+
+Cognitive Engineering-Driven Universal Intelligent Agent (MTS-agent) is an innovative open-source project aimed at integrating the latest large language models (such as GPT-4) with unique cognitive engineering theory to create an advanced AI agent capable of simulating human intelligent behavior. This project is based on a prototypical architecture that comprises perception stream, long-term memory, and execution as its three core elements, deconstructing and replicating the process of human intellectual activities. By endowing GPT with new organizational and procedural intelligence, MTS-agent has crafted an entity that not only understands tasks but is also capable of autonomously advancing the evolution of civilization.
+
+### Background
+
+Current GPT models show limitations in handling complex tasks, particularly lacking in process intelligence, i.e., the inability to simulate the coherent logic and creative tool usage in human problem-solving. The MTS-agent project emerged in response to this challenge, aiming to optimize and transcend traditional task-oriented AI by reflecting on and re-creating the general process of human intellectual activities, establishing a universally intelligent agent capable of logic biomimicry.
+
+### Feature
+
+1. Perception Stream: A component similar to the human stream of consciousness, capable of receiving and processing various sensory information, such as visual and auditory inputs, as well as internal thoughts.
+2. Long-term Memory: Provides a structure for continuity across time and accumulation of knowledge, enabling AI to save and utilize previous experiences and learning.
+3. Execution and Working Memory: Allows AI to perform actions based on current tasks and internal states (long-term memory and perception stream).
+4. Deconstructing Human Intellectual Activities: By studying how humans think, solve problems, and create tools, the project has constructed paths of execution for the intelligent agent.
+5. Multi-role Model: Simulates multiple human thought roles within the perception stream, such as the curious, the solver, and the predictor, mimicking free thoughts and generating processes to solve problems.
+
+![Figure 1: Conversations without prior experience](doc/pic/对话2.png)
+
+<center>Figure 1: Conversations without prior experience</center>
 
 
-### 项目简介：
+![Figure 2: Combining experience in conversation and actively enhancing effects](doc/pic/对话1.png)
 
-思维工程驱动的通用智能代理（MTSagent）是一个开创性的开源项目，旨在结合最新的大型语言模型（如 GPT-4）与独特的思维工程理论，创建一个能够模拟人类智能行为的高级 AI 代理。此项目基于一个原型机的架构，包含感知流、长期记忆和执行三个核心元素，对人类智能活动的过程进行解构与再现。MTS-agent 通过赋予 GPT 新的组织和过程智能，打造了一个不仅理解任务，而且能够自主推进文明进化的智能体。
+<center>Figure 2: Combining experience in conversation and actively enhancing effects</center>
 
-### 项目背景：
+### Progress
 
-当前的 GPT 模型在处理复杂任务时显示出了局限，尤其是缺乏过程智能，即无法模拟人类处理问题的连贯逻辑和创造性工具使用。MTSagent 项目应运而生，旨在通过反思并再造人类智能活动的一般过程，来优化并超越传统的任务导向 AI，建立一个可以进行逻辑仿生的通用智能代理。
+At the prototype stage, the project has achieved the construction of core structures and basic functionalities:
 
-### 核心特性：
-1. 感知流：一个类似人类意识流的组件，能够接收并处理各种感知信息，如视觉、听觉输入和内部思考。
-2. 长期记忆：提供跨时间连续性和累积知识的结构，使 AI 能够保存和利用先前的经验和学习。
-3. 执行和工作记忆：允许 AI 根据当前任务和内部状态（长期记忆和感知流）执行操作。
-4. 解构人类智能活动：通过研究人类如何思考、解决问题和创造工具，项目构筑了智能代理的执行路径。
-5. 多角色模型：在感知流中模拟多种人类思维角色，如好奇者、解答者和推知者，模拟自由思绪并生成解决问题的过程。
+- Implemented API encapsulation for attention marking, information classification, and multi-role dialogue models based on GPT.
+- Built a long-term memory model, including forgetting and awakening mechanisms as well as multi-tiered storage systems, optimizing search efficiency and storage.
+- Developed dialogue generation API, supporting the integration of working memory in dialogue tasks and free-thought interactions.
+- Initially integrated the structures of knowledge and policy memory, providing the AI with the capability to think and execute tasks based on stored strategies.
 
-![Figure 1: 无经验情况下的对话](doc/pic/对话2.png)
+### Goals
 
-<center>Figure 1: 无经验情况下的对话</center>
+The short-term goal is to enhance the performance of the current prototype and commercialize it in specific domains, providing professional-level services in areas such as psychological counseling, health, etc. The long-term goal is to inherit and develop the emotional decision system in the "Thought Engineering" theory, further improving the intelligent agent's autonomous thinking and motivation formation, enabling it to become an intelligent individual capable of independently advancing civilization.
 
+### Participation and Contributions
 
-![Figure 2: 在结合经验情况下的对话和主动效果增强](doc/pic/对话1.png)
+The mts-agent project encourages open-source developers and researchers in the science of thinking to participate, and it maintains an open attitude towards all contributors' code and ideas. Project maintainers look forward to collaborating with global developers and scientific researchers to jointly push forward the future development of humanity and AI technology.
 
-<center>Figure 2: 在结合经验情况下的对话和主动效果增强</center>
+### Design
 
-### 开发进展：
-该项目在原型机阶段就已实现了核心结构的搭建和基本功能：
-- 实现了基于 GPT 的关注度标注、信息分类和多角色对话模型的 API 封装。
-- 构建了长期记忆的模型，包括遗忘和唤醒机制以及多级存储系统，优化搜索效率和存储。
-- 开发了对话生成 API，支持了对话任务中的工作记忆整合和自由思绪式的互动。
-- 初步融入了知识和策略记忆的结构，为 AI 提供了根据存储的策略思考和执行任务的能力。
+In the MTS-agent, the perception stream acts as the data hub, facilitating the transfer of information among various roles, as illustrated in the diagram below.
+![Figure 3：The structure of the system](doc/pic/感知流.png)
 
-### 项目目标：
-短期目标是完善当前原型机的性能，并在特定领域商用化，提供如心理咨询、健康等领域的专业级别服务。长期目标是继承并发展“思维工程”理论中的情绪决策系统，进一步提升智能代理的自主思考和动机形成，使之能够成为能独立推动文明进步的智能个体。
+<center>Figure 3：The structure of the system</center>
 
-### 贡献和参与：
-mts-agent 项目鼓励开源社区的开发者和思维科学的研究者参与，并对所有贡献者的代码和想法持开放态度。项目维护者期待与全球开发者和科研工作者合作，共同推动人类与 AI 技术的未来发展。
-
-### 1.2 系统设计
-
-MTS-agent以感知流作为数据枢纽，实现信息在不同角色之间传递，整体如下图所示：
-![Figure 3：系统整体结构](doc/pic/感知流.png)
-
-<center>Figure 3：系统整体结构</center>
-
-### 1.3 工程设计
-
-#### 1.4 工程文件结构
+#### Project File Structure
 
 ```
 mts-agent
-├─ .gitignore
-├─ Dockerfile
 ├─ LICENSE
 ├─ README.md
-├─ data                     # 数据和模型相关文件
-├─ db                       # 数据规划
-├─ doc                      # 说明文档
+├─ README_zh.md
+├─ data
+├─ db
+├─ doc              
 ├─ docker-compose.yml
 ├─ environment.yml
-├─ platform                 # 平台源码
-│  ├─ agents                # 代理源码 
-│  │  ├─ base  					# mts_agent基础代码
-│  │  ├─ convergence_service 	# 收敛问题主动求解
-│  │  ├─ dialogue_service 		# 对话和表达
-│  │  ├─ divergence_service 	# 发散提问
-│  │  ├─ classific_service  	# 分类，关注度标注
-│  │  ├─ plant_cognition_service # 植物性认知
-│  │  ├─ response_service 		# 回应服务，直接回应用户输入
-│  │  ├─ second_expression 		# 主动表达
-│  │  ├─ strategy_service 		# 策略与意图
-│  │  └─ summarize_service 		# 印象冲击总结
-│  ├─ ai_dialogue_service 	# gpt服务请求
-│  ├─ rag                   # rag服务源码
-│  └─ front                 # 前端源码
-├─ scripts                  # 脚本文件，如.sh、.bat等
+├─ platform
+│  ├─ agents
+│  │  ├─ base
+│  │  │  ├─ agent_http
+│  │  │  ├─ agent_public
+│  │  │  ├─ agent_storage_client
+│  │  │  ├─ attention_client
+│  │  │  ├─ bashrc.sh
+│  │  │  ├─ environment.yml
+│  │  │  ├─ large_model_client
+│  │  │  ├─ mts_agent_service.py
+│  │  │  ├─ service
+│  │  │  └─ thoughts_flow_client
+│  │  ├─ classific_service
+│  │  ├─ config
+│  │  ├─ convergence_service
+│  │  ├─ dialogue_service
+│  │  ├─ divergence_service
+│  │  ├─ docker-entrypoint.sh
+│  │  ├─ main.sh
+│  │  ├─ plant_cognition_service
+│  │  ├─ requirements.txt
+│  │  ├─ response_service
+│  │  ├─ second_expression
+│  │  ├─ services_main.py
+│  │  ├─ setting.py
+│  │  ├─ strategy_service
+│  │  └─ summarize_service
+│  ├─ ai_dialogue_service
+│  ├─ front
+│  │  ├─ README.md
+│  │  ├─ default.conf
+│  │  └─ mts_agent_web
+│  └─ rag
+│     ├─ config
+│     ├─ controller
+│     ├─ docker-entrypoint.sh
+│     ├─ gunicorn.config.py
+│     ├─ main.py
+│     ├─ model
+│     ├─ requirements.txt
+│     ├─ service
+│     └─ setting.py
+├─ scripts
 ├─ setup.bat
 └─ setup.sh
 
 
 ```
 
-### 1.5 安装部署
+### Deploy
 
-可以直接通过根目录下的docker-compose.yml直接启动所有服务及中间件。三个服务的官方linux镜像发布在https://hub.docker.com/u/galaxyeyetech
+The services and middleware can be directly launched through the docker-compose.yml located in the root directory. The official Linux images for the three services are available at https://hub.docker.com/u/galaxyeyetech
 
-如果二次开发或者其它平台需要自行编译，可以通过工程目录下的Dockerfile文件进行编译
+For further development or other platforms that require manual compilation, this can be achieved through the Dockerfile files located in the project directories:
 /platform/agents/Dockerfile
 /platform/rag/Dockerfile
 /platform/ai_dialogue_service/Dockerfile
 
-rag和ai_dialogue_service支持环境变量配置，可以通过.env或者docker-compose.yml进行配置，docker-compose.yml中定义了mts-agent-network网络，网络连接使用了别名。
-大部分配置按默认就可以，docker-compose.yml中搜索OPENAI_API_KEY，这段配置需要改成用户自己的APIKEY
+Both rag and ai_dialogue_service support configuration via environment variables, which can be done through .env files or the docker-compose.yml. The docker-compose.yml defines the mts-agent-network network, with network connections using aliases.
+Most configurations can be left as default. In the docker-compose.yml, search for OPENAI_API_KEY. This configuration needs to be changed to the user's own APIKEY.
 
-### 1.6 运行
+### Usage
 
-使用以下命令启动agent:
-docker compose up -d
+To start the agent, use the following command:
+`docker compose up -d`
 
-浏览器中访问部署的服务器的IP，如http://127.0.0.1/，工具页中有一个websocket连接地址，默认为ws://localhost/mts_agent/dialogue/v1/dialogue，请将localhost改为部署的IP地址
+In a web browser, access the deployed server's IP, for example, http://127.0.0.1/. In the tool page, there is a websocket connection address, which by default is `ws://localhost/mts_agent/dialogue/v1/dialogue`. Please change `localhost` to the deployed IP address.
